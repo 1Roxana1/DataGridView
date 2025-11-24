@@ -1,89 +1,82 @@
-using DataGridViewProject.Forms;
+using DataGridViewProject.Entities;
+using DataGridViewProject.Entities.Enums;
+using DataGridViewProject.Services.Contracts;
 using DataGridViewProject.Infrastructure;
-using DataGridViewProject.Models;
-using DataGridViewProject.Models.Enums;
-using DataGridViewProject.Services;
 
-namespace DataGridViewProject
+namespace DataGridViewProject.Forms
 {
     /// <summary>
     /// Главная форма
     /// </summary>
     public partial class MainForm : Form
     {
-        private readonly StudentManager studentService = new();
-        private readonly BindingSource bindingSource = new();
+        private readonly BindingSource bindingSource;
+        private readonly IStudentService studentService;
 
         /// <summary>
         /// Инициализировать новый экземпляр <see cref="MainForm"/>
         /// </summary>
-        public MainForm()
+        public MainForm(IStudentService studentService)
         {
             InitializeComponent();
+            Load += MainForm_Load;
+            
+            bindingSource  = new();
+            this.studentService = studentService;
             dataGridView.AutoGenerateColumns = false;
-            bindingSource.DataSource = studentService.GetAll();
-            dataGridView.DataSource = bindingSource;
-
             ConfigureColumns();
-            RefreshStats();
         }
 
         private void ConfigureColumns()
         {
-
             Fio.DataPropertyName = nameof(Student.FullName);
+            Fio.ReadOnly = true;
             Gender.DataPropertyName = nameof(Student.Gender);
+            Gender.ReadOnly = true;
             DateOfBirth.DataPropertyName = nameof(Student.BirthDate);
+            DateOfBirth.ReadOnly = true;
             Form.DataPropertyName = nameof(Student.FormEducation);
+            Form.ReadOnly = true;
             ScoresMath.DataPropertyName = nameof(Student.MathScore);
+            ScoresMath.ReadOnly = true;
             ScoresRussian.DataPropertyName = nameof(Student.RussianScore);
+            ScoresRussian.ReadOnly = true;
             ScoreInform.DataPropertyName = nameof(Student.InformaticsScore);
-            //TotalScores.DataPropertyName = nameof(Student.TotalScore);
+            ScoreInform.ReadOnly = true;
+            
+            TotalScores.ReadOnly = true;
         }
 
 
-        private void RefreshStats()
+        private async Task RefreshStats()
         {
-            toolStripStatusLabelCount.Text = $"Всего студентов: {studentService.GetCount()}";
-            toolStripStatusLabelStatusStudent.Text = $"Всего студентов с более 150 баллов: {studentService.GetCountAbove150()}";
+            var statistics = await studentService.GetStatisticsAsync(CancellationToken.None);
+            toolStripStatusLabelCount.Text = $"Всего студентов: {statistics.StudentCount}";
+            toolStripStatusLabelStatusStudent.Text = $"Всего студентов с более 150 баллов: {statistics.ExcellentStudentCount}";
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new EditForm(new Student());
+            var form = new EditForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                studentService.Add(form.Student);
-                bindingSource.DataSource = studentService.GetAll();
-                RefreshStats();
+                await studentService.AddAsync(form.Student, CancellationToken.None);
+                await OnUpdate();
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             if (bindingSource.Current is not Student selected)
             {
                 return;
             }
 
-            var clone = new Student
-            {
-                Id = selected.Id,
-                FullName = selected.FullName,
-                Gender = selected.Gender,
-                BirthDate = selected.BirthDate,
-                FormEducation = selected.FormEducation,
-                MathScore = selected.MathScore,
-                RussianScore = selected.RussianScore,
-                InformaticsScore = selected.InformaticsScore
-            };
-
-            var form = new EditForm(clone);
+            var form = new EditForm(selected);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                studentService.Update(form.Student);
-                bindingSource.DataSource = studentService.GetAll();
-                RefreshStats();
+                await studentService.UpdateAsync(form.Student, CancellationToken.None);
+                await OnUpdate();
             }
         }
 
@@ -101,7 +94,7 @@ namespace DataGridViewProject
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
             if (bindingSource.Current is not Student selected)
             {
@@ -109,11 +102,44 @@ namespace DataGridViewProject
             }
             if (MessageBox.Show("Удалить запись?", "Подтверждение", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                studentService.Delete(selected.Id);
-                bindingSource.DataSource = studentService.GetAll();
-                RefreshStats();
+                await studentService.DeleteAsync(selected.Id,  CancellationToken.None);
+                await OnUpdate();
             }
         }
+        
+        private async Task OnUpdate()
+        {
+            bindingSource.DataSource = await studentService.GetAllAsync(CancellationToken.None);
+            bindingSource.ResetBindings(false);
+            await RefreshStats();
+        }
 
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            var student1 = new Student
+            {
+                FullName = "Иванов Иван Иванович",
+                Gender = DataGridViewProject.Entities.Enums.Gender.Male,
+                BirthDate = new(2006, 1, 24),
+                FormEducation = FormEducation.FullTime,
+                MathScore = 50,
+                RussianScore = 50,
+                InformaticsScore = 0
+            };
+            var student2 = new Student
+            {
+                FullName = "Алексеевич Алексей Олег",
+                Gender = DataGridViewProject.Entities.Enums.Gender.Female,
+                BirthDate = new(2006, 10, 21),
+                FormEducation = FormEducation.Correspondence,
+                MathScore = 75,
+                RussianScore = 34,
+                InformaticsScore = 12
+            };
+            await studentService.AddAsync(student1, CancellationToken.None);
+            await studentService.AddAsync(student2, CancellationToken.None);
+            await OnUpdate();
+            dataGridView.DataSource = bindingSource;
+        }
     }
 }

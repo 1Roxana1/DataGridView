@@ -1,17 +1,7 @@
 ﻿using DataGridViewProject.Infrastructure;
-using DataGridViewProject.Models;
-using DataGridViewProject.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using DataGridViewProject.Entities;
+using DataGridViewProject.Entities.Enums;
 
 namespace DataGridViewProject.Forms
 {
@@ -23,15 +13,42 @@ namespace DataGridViewProject.Forms
         /// <summary>
         /// Текущий студент
         /// </summary>
-        public Student Student;
+        public Student Student { get; private set; }
 
         /// <summary>
         /// Инициализировать новый экземпляр <see cref="EditForm"/>
         /// </summary>
-        public EditForm(Student student)
+        public EditForm(Student? student = null)
         {
             InitializeComponent();
-            Student = student;
+            birthdayDateTimePicker.MinDate = DateTime.Today - TimeSpan.FromDays(365 * 40);
+            
+            Student = new Student
+            {
+                FullName= string.Empty,
+                Gender=Gender.Male,
+                BirthDate= DateTime.Today,
+                FormEducation = FormEducation.Correspondence,
+                MathScore=0,
+                RussianScore=0,
+                InformaticsScore=0
+            };
+            if (student != null)
+            {
+                Student = new Student
+                {
+                    Id = student.Id,
+                    FullName = student.FullName,
+                    Gender = student.Gender,
+                    BirthDate = student.BirthDate,
+                    FormEducation = student.FormEducation,
+                    MathScore = student.MathScore,
+                    RussianScore = student.RussianScore,
+                    InformaticsScore = student.InformaticsScore
+                };
+                Text = "Редактирование студента";
+                buttonSave.Text = "Сохранить";
+            }
             InitBindings();
         }
 
@@ -54,7 +71,7 @@ namespace DataGridViewProject.Forms
             textBoxFullName.AddBinding(x => x.Text, Student, x => x.FullName, errorProvider);
             comboBoxGender.AddBinding(x => x.Text, Student, x => x.Gender, errorProvider);
             comboBoxFormEducation.AddBinding(x => x.Text, Student, x => x.FormEducation, errorProvider);
-            maskedTextBoxDate.AddBinding(x => x.Text, Student, x => x.BirthDate, errorProvider);
+            birthdayDateTimePicker.AddBinding(x => x.Text, Student, x => x.BirthDate, errorProvider);
             numericUpDownMath.AddBinding(x => x.Value, Student, x => x.MathScore, errorProvider);
             numericUpDownRussian.AddBinding(x => x.Value, Student, x => x.RussianScore, errorProvider);
             numericUpDownInformatics.AddBinding(x => x.Value, Student, x => x.InformaticsScore, errorProvider);
@@ -63,7 +80,6 @@ namespace DataGridViewProject.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            Student.BirthDate = Student.BirthDate.Date;
 
             var context = new ValidationContext(Student);
             var results = new List<ValidationResult>();
@@ -88,10 +104,7 @@ namespace DataGridViewProject.Forms
                 }
                 return;
             }
-
             DialogResult = DialogResult.OK;
-
-
         }
     }
 }

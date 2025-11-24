@@ -1,18 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataGridViewProject.Models.Enums
+namespace DataGridViewProject.Entities.Enums
 {
     /// <summary>
     /// Пол
     /// </summary>
     public enum Gender
     {
-        /// <summary>
-        /// Неизвестный
-        /// </summary>
-        [Display(Name = "Неизвестный")]
-        Unknown,
-
         /// <summary>
         /// Мужской
         /// </summary>
@@ -24,11 +18,5 @@ namespace DataGridViewProject.Models.Enums
         /// </summary>
         [Display(Name = "Женский")]
         Female,
-
-        /// <summary>
-        /// Боевой вертолёт
-        /// </summary>
-        [Display(Name = "Боевой вертолёт")]
-        CombatHelicopter,
     }
 }
