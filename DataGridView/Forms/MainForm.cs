@@ -1,7 +1,7 @@
 using DataGridViewProject.Entities;
 using DataGridViewProject.Entities.Enums;
-using DataGridViewProject.Services.Contracts;
 using DataGridViewProject.Infrastructure;
+using DataGridViewProject.Services.Contracts;
 
 namespace DataGridViewProject.Forms
 {
