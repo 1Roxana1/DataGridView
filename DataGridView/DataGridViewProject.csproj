@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DataGridView.Repositories\DataGridView.Repositories.csproj" />
     <ProjectReference Include="..\DataGridView.Services.Contracts\DataGridView.Services.Contracts.csproj" />
   </ItemGroup>
 

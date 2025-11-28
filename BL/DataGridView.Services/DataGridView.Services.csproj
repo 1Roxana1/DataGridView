@@ -21,6 +21,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\DAL\DataGridView.Entities\DataGridView.Entities.csproj" />
+      <ProjectReference Include="..\..\DAL\DataGridView.Repositories.Contracts\DataGridView.Repositories.Contracts.csproj" />
+      <ProjectReference Include="..\DAL\DataGridView.Repositories.Contracts\DataGridView.Repositories.Contracts.csproj" />
       <ProjectReference Include="..\DataGridView.Entities\DataGridView.Entities.csproj" />
       <ProjectReference Include="..\DataGridView.Services.Contracts\DataGridView.Services.Contracts.csproj" />
     </ItemGroup>
