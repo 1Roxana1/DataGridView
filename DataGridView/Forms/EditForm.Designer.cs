@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            buttonSave = new Button();
-            panelTop = new Panel();
-            labelTitle = new Label();
-            labelFullName = new Label();
-            labelGender = new Label();
-            labelBirthDate = new Label();
-            labelFormEducation = new Label();
-            labelMathScore = new Label();
-            labelRussianScore = new Label();
-            labelInformaticsScore = new Label();
-            textBoxFullName = new TextBox();
-            comboBoxGender = new ComboBox();
-            errorProvider = new ErrorProvider(components);
-            comboBoxFormEducation = new ComboBox();
-            numericUpDownMath = new NumericUpDown();
-            numericUpDownRussian = new NumericUpDown();
-            numericUpDownInformatics = new NumericUpDown();
-            maskedTextBoxDate = new MaskedTextBox();
+            buttonSave = new System.Windows.Forms.Button();
+            panelTop = new System.Windows.Forms.Panel();
+            labelTitle = new System.Windows.Forms.Label();
+            labelFullName = new System.Windows.Forms.Label();
+            labelGender = new System.Windows.Forms.Label();
+            labelBirthDate = new System.Windows.Forms.Label();
+            labelFormEducation = new System.Windows.Forms.Label();
+            labelMathScore = new System.Windows.Forms.Label();
+            labelRussianScore = new System.Windows.Forms.Label();
+            labelInformaticsScore = new System.Windows.Forms.Label();
+            textBoxFullName = new System.Windows.Forms.TextBox();
+            comboBoxGender = new System.Windows.Forms.ComboBox();
+            errorProvider = new System.Windows.Forms.ErrorProvider(components);
+            comboBoxFormEducation = new System.Windows.Forms.ComboBox();
+            numericUpDownMath = new System.Windows.Forms.NumericUpDown();
+            numericUpDownRussian = new System.Windows.Forms.NumericUpDown();
+            numericUpDownInformatics = new System.Windows.Forms.NumericUpDown();
+            birthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMath).BeginInit();
@@ -56,104 +56,104 @@
             // 
             // buttonSave
             // 
-            buttonSave.Dock = DockStyle.Bottom;
-            buttonSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            buttonSave.Location = new Point(0, 307);
+            buttonSave.Dock = System.Windows.Forms.DockStyle.Bottom;
+            buttonSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            buttonSave.Location = new System.Drawing.Point(0, 307);
             buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(330, 23);
+            buttonSave.Size = new System.Drawing.Size(330, 23);
             buttonSave.TabIndex = 0;
             buttonSave.Text = "Сохранить";
             buttonSave.Click += btnSave_Click;
             // 
             // panelTop
             // 
-            panelTop.BackColor = Color.PaleGreen;
+            panelTop.BackColor = System.Drawing.Color.PaleGreen;
             panelTop.Controls.Add(labelTitle);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
+            panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            panelTop.Location = new System.Drawing.Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(330, 40);
+            panelTop.Size = new System.Drawing.Size(330, 40);
             panelTop.TabIndex = 1;
             // 
             // labelTitle
             // 
             labelTitle.AutoSize = true;
-            labelTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            labelTitle.Location = new Point(20, 10);
+            labelTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            labelTitle.Location = new System.Drawing.Point(20, 10);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(289, 19);
+            labelTitle.Size = new System.Drawing.Size(289, 19);
             labelTitle.TabIndex = 0;
             labelTitle.Text = "Добавить / Редактировать абитуриента";
             // 
             // labelFullName
             // 
-            labelFullName.Location = new Point(20, 60);
+            labelFullName.Location = new System.Drawing.Point(20, 60);
             labelFullName.Name = "labelFullName";
-            labelFullName.Size = new Size(100, 23);
+            labelFullName.Size = new System.Drawing.Size(100, 23);
             labelFullName.TabIndex = 2;
             labelFullName.Text = "ФИО:";
             // 
             // labelGender
             // 
-            labelGender.Location = new Point(20, 95);
+            labelGender.Location = new System.Drawing.Point(20, 95);
             labelGender.Name = "labelGender";
-            labelGender.Size = new Size(100, 23);
+            labelGender.Size = new System.Drawing.Size(100, 23);
             labelGender.TabIndex = 4;
             labelGender.Text = "Пол:";
             // 
             // labelBirthDate
             // 
-            labelBirthDate.Location = new Point(20, 130);
+            labelBirthDate.Location = new System.Drawing.Point(20, 130);
             labelBirthDate.Name = "labelBirthDate";
-            labelBirthDate.Size = new Size(100, 23);
+            labelBirthDate.Size = new System.Drawing.Size(100, 23);
             labelBirthDate.TabIndex = 6;
             labelBirthDate.Text = "Дата рождения:";
             // 
             // labelFormEducation
             // 
-            labelFormEducation.Location = new Point(20, 165);
+            labelFormEducation.Location = new System.Drawing.Point(20, 165);
             labelFormEducation.Name = "labelFormEducation";
-            labelFormEducation.Size = new Size(100, 23);
+            labelFormEducation.Size = new System.Drawing.Size(100, 23);
             labelFormEducation.TabIndex = 8;
             labelFormEducation.Text = "Форма обучения:";
             // 
             // labelMathScore
             // 
-            labelMathScore.Location = new Point(20, 200);
+            labelMathScore.Location = new System.Drawing.Point(20, 200);
             labelMathScore.Name = "labelMathScore";
-            labelMathScore.Size = new Size(100, 23);
+            labelMathScore.Size = new System.Drawing.Size(100, 23);
             labelMathScore.TabIndex = 10;
             labelMathScore.Text = "ЕГЭ Математика:";
             // 
             // labelRussianScore
             // 
-            labelRussianScore.Location = new Point(20, 235);
+            labelRussianScore.Location = new System.Drawing.Point(20, 235);
             labelRussianScore.Name = "labelRussianScore";
-            labelRussianScore.Size = new Size(100, 23);
+            labelRussianScore.Size = new System.Drawing.Size(100, 23);
             labelRussianScore.TabIndex = 12;
             labelRussianScore.Text = "ЕГЭ Русский:";
             // 
             // labelInformaticsScore
             // 
-            labelInformaticsScore.Location = new Point(20, 270);
+            labelInformaticsScore.Location = new System.Drawing.Point(20, 270);
             labelInformaticsScore.Name = "labelInformaticsScore";
-            labelInformaticsScore.Size = new Size(100, 23);
+            labelInformaticsScore.Size = new System.Drawing.Size(100, 23);
             labelInformaticsScore.TabIndex = 14;
             labelInformaticsScore.Text = "ЕГЭ Информатика:";
             // 
             // textBoxFullName
             // 
-            textBoxFullName.Location = new Point(150, 60);
+            textBoxFullName.Location = new System.Drawing.Point(150, 60);
             textBoxFullName.Name = "textBoxFullName";
-            textBoxFullName.Size = new Size(150, 23);
+            textBoxFullName.Size = new System.Drawing.Size(150, 23);
             textBoxFullName.TabIndex = 3;
             // 
             // comboBoxGender
             // 
-            comboBoxGender.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxGender.Location = new Point(150, 95);
+            comboBoxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxGender.Location = new System.Drawing.Point(150, 95);
             comboBoxGender.Name = "comboBoxGender";
-            comboBoxGender.Size = new Size(150, 23);
+            comboBoxGender.Size = new System.Drawing.Size(150, 23);
             comboBoxGender.TabIndex = 5;
             // 
             // errorProvider
@@ -162,48 +162,47 @@
             // 
             // comboBoxFormEducation
             // 
-            comboBoxFormEducation.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxFormEducation.Location = new Point(150, 165);
+            comboBoxFormEducation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxFormEducation.Location = new System.Drawing.Point(150, 165);
             comboBoxFormEducation.Name = "comboBoxFormEducation";
-            comboBoxFormEducation.Size = new Size(150, 23);
+            comboBoxFormEducation.Size = new System.Drawing.Size(150, 23);
             comboBoxFormEducation.TabIndex = 9;
             // 
             // numericUpDownMath
             // 
-            numericUpDownMath.Location = new Point(150, 200);
+            numericUpDownMath.Location = new System.Drawing.Point(150, 200);
             numericUpDownMath.Name = "numericUpDownMath";
-            numericUpDownMath.Size = new Size(60, 23);
+            numericUpDownMath.Size = new System.Drawing.Size(60, 23);
             numericUpDownMath.TabIndex = 11;
             // 
             // numericUpDownRussian
             // 
-            numericUpDownRussian.Location = new Point(150, 235);
+            numericUpDownRussian.Location = new System.Drawing.Point(150, 235);
             numericUpDownRussian.Name = "numericUpDownRussian";
-            numericUpDownRussian.Size = new Size(60, 23);
+            numericUpDownRussian.Size = new System.Drawing.Size(60, 23);
             numericUpDownRussian.TabIndex = 13;
             // 
             // numericUpDownInformatics
             // 
-            numericUpDownInformatics.Location = new Point(150, 270);
+            numericUpDownInformatics.Location = new System.Drawing.Point(150, 270);
             numericUpDownInformatics.Name = "numericUpDownInformatics";
-            numericUpDownInformatics.Size = new Size(60, 23);
+            numericUpDownInformatics.Size = new System.Drawing.Size(60, 23);
             numericUpDownInformatics.TabIndex = 15;
             // 
-            // maskedTextBoxDate
+            // birthdayDateTimePicker
             // 
-            maskedTextBoxDate.Location = new Point(150, 130);
-            maskedTextBoxDate.Mask = "00/00/0000";
-            maskedTextBoxDate.Name = "maskedTextBoxDate";
-            maskedTextBoxDate.Size = new Size(150, 23);
-            maskedTextBoxDate.TabIndex = 16;
-            maskedTextBoxDate.ValidatingType = typeof(DateTime);
+            birthdayDateTimePicker.Location = new System.Drawing.Point(150, 130);
+            birthdayDateTimePicker.Name = "birthdayDateTimePicker";
+            birthdayDateTimePicker.Size = new System.Drawing.Size(150, 23);
+            birthdayDateTimePicker.TabIndex = 16;
+            birthdayDateTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // EditForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(330, 330);
-            Controls.Add(maskedTextBoxDate);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(330, 330);
+            Controls.Add(birthdayDateTimePicker);
             Controls.Add(buttonSave);
             Controls.Add(panelTop);
             Controls.Add(labelFullName);
@@ -219,9 +218,8 @@
             Controls.Add(numericUpDownRussian);
             Controls.Add(labelInformaticsScore);
             Controls.Add(numericUpDownInformatics);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Name = "EditForm";
-            StartPosition = FormStartPosition.CenterParent;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Добавить / Редактировать абитуриента";
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
@@ -254,6 +252,6 @@
         private NumericUpDown numericUpDownInformatics;
 
         private ErrorProvider errorProvider;
-        private MaskedTextBox maskedTextBoxDate;
+        private System.Windows.Forms.DateTimePicker birthdayDateTimePicker;
     }
 }

@@ -1,13 +1,9 @@
-﻿using DataGridViewProject.Models.Enums;
-using DataGridViewProject.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using DataGridViewProject.Entities.Contracts;
+using DataGridViewProject.Entities.Enums;
+using DataGridViewProject.Entities.Validators;
 
-namespace DataGridViewProject.Models
+namespace DataGridViewProject.Entities
 {
     /// <summary>
     /// Модель ученика
@@ -23,7 +19,7 @@ namespace DataGridViewProject.Models
         /// Полное имя
         /// </summary>
         [Required(ErrorMessage = "ФИО обязательно")]
-        [StringLength(Constants.MaxLengthFullName,MinimumLength = Constants.MinLengthFullName)]
+        [StringLength(EntityValidationConstants.MaxLengthFullName,MinimumLength = EntityValidationConstants.MinLengthFullName)]
         public string FullName { get; set; } = string.Empty;
 
         /// <inheritdoc/>
@@ -34,7 +30,7 @@ namespace DataGridViewProject.Models
         /// Дата рождения
         /// </summary>
         [Required(ErrorMessage = "Дата рождения обязательна")]
-        [CustomValidation(typeof(Student), nameof(CustomValidate.ValidateBirthDate))]
+        [AgeRange(EntityValidationConstants.MinYear, EntityValidationConstants.MaxYear, ErrorMessage = "Возраст должен быть от 18 до 40!")]
         public DateTime BirthDate { get; set; }
 
 
@@ -45,19 +41,19 @@ namespace DataGridViewProject.Models
         /// <summary>
         /// Баллы по математике
         /// </summary>
-        [Range(Constants.MinScore, Constants.MaxScore)]
+        [Range(EntityValidationConstants.MinScore, EntityValidationConstants.MaxScore)]
         public decimal MathScore { get; set; }
 
         /// <summary>
         /// Баллые по русскому языку
         /// </summary>
-        [Range(Constants.MinScore, Constants.MaxScore)]
+        [Range(EntityValidationConstants.MinScore, EntityValidationConstants.MaxScore)]
         public decimal RussianScore { get; set; }
 
         /// <summary>
         /// Баллы по информатике
         /// </summary>
-        [Range(Constants.MinScore, Constants.MaxScore)]
+        [Range(EntityValidationConstants.MinScore, EntityValidationConstants.MaxScore)]
         public decimal InformaticsScore { get; set; }
     }
 }

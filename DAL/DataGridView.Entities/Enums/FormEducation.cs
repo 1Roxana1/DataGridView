@@ -1,18 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataGridViewProject.Models.Enums
+namespace DataGridViewProject.Entities.Enums
 {
     /// <summary>
     /// Форма обучения
     /// </summary>
     public enum FormEducation
     {
-        /// <summary>
-        /// Неизвестная
-        /// </summary>
-        [Display(Name = "Неизвестная")]
-        Unknown,
-
         /// <summary>
         /// Очная
         /// </summary>
